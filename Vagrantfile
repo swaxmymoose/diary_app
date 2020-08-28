@@ -1,3 +1,5 @@
+# Author: Thomas Roff
+
 Vagrant.configure("2") do |config|
 
   config.vm.box = "ubuntu/xenial64"
@@ -5,12 +7,12 @@ Vagrant.configure("2") do |config|
   # NodeJS With Express Machine 
   config.vm.define "webserver" do |webserver|
     webserver.vm.hostname = "webserver"
-    webserver.vm.network "forwarded_port", guest: 3000, host: 3001, host_ip: "127.0.0.1"
+    webserver.vm.network "forwarded_port", guest: 3000, host: 3001, host_ip: "127.0.0.1", auto_correct: true
     webserver.vm.network "private_network", ip: "192.168.2.11"
     webserver.vm.provision "shell", inline: <<-SHELL
       curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
-      apt-get update
-      apt-get install -y nodejs
+      sudo apt-get update
+      sudo apt-get install -y nodejs
       sudo npm install forever -g
       cd /vagrant/vm-1
       npm install
