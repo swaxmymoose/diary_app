@@ -1,0 +1,15 @@
+{
+  "name": "vm-3",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "node pdf-out.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "pdfkit": "^0.10.0"
+  }
+}
