@@ -32,6 +32,24 @@ const postSchema = {
 
 const Post = mongoose.model("Post", postSchema);
 
+const lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+
+Post.find().count(function(err, count){
+  if (count === 0) {
+
+    const post = new Post({
+      title: 'Dummy Post',
+      content: lorem
+    });
+   
+    post.save(function(err){
+      if (!err)
+	console.log("Inserted dummy post.");
+    });
+
+  }
+});
+
 app.post("/compose", function(req, res){
 
   const post = new Post({
@@ -68,6 +86,13 @@ const requestedPostId = req.params.postId;
     });
   });
 
+});
+
+app.get("/allpost", function(req, res) {
+ Post.find({}, function(err, posts){
+  console.log(posts);
+  res.send(posts);
+  });
 });
 
 
