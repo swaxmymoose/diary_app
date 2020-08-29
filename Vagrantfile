@@ -39,5 +39,18 @@ Vagrant.configure("2") do |config|
     SHELL
   end
 
-
+  # Report Generation Machine
+  config.vm.define :pdf do |pdf|
+    pdf.vm.box = "ubuntu/xenial64"
+    pdf.vm.network "private_network", ip: "192.168.55.13"
+    pdf.vm.hostname = "pdf"
+    pdf.vm.provision "shell", inline: <<-SHELL
+      curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+      sudo apt-get update
+      sudo apt-get install -y nodejs
+      cd /vagrant/vm-3
+      npm install
+      mv /vagrant/vm-3/pdf-cron.sh /etc/cron.daily
+    SHELL
+  end
 end
