@@ -50,8 +50,9 @@ Vagrant.configure("2") do |config|
       sudo apt-get install -y nodejs
       cd /vagrant/vm-3
       sudo npm install
+      sudo chmod +x pdf-cron.sh
       sudo cp /vagrant/vm-3/pdf-cron.sh /etc/cron.daily
-      sudo chmod +x /etc/cron.daily/pdf-cron.sh
+      sudo ./pdf-cron.sh
     SHELL
   end
 end
