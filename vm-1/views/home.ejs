@@ -1,5 +1,4 @@
 <%- include("partials/header"); -%>
-  <button type="button" class="btn btn-primary btn-lg">Create New Post</button>
   <%  posts.forEach(function(post){ %>
     <h1><%=post.title%></h1>
     <p>
@@ -7,4 +6,5 @@
     <a href="/posts/<%=post._id%>">Read More</a>
     </p>
     <% }) %>
+    <button onclick="location.href='/compose'" type="button" class="btn btn-primary btn-lg new-post">Create New Post</button>
 <%- include("partials/footer"); -%>
