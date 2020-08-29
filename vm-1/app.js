@@ -14,7 +14,16 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-const dbConnection = mongoose.createConnection("mongodb://192.168.2.12:27017/postDB", {useNewUrlParser: true});
+mongoose.connect("mongodb://192.168.2.12:27017/postDB", {useNewUrlParser: true});
+
+const db = mongoose.connection
+db.once('open', _ => {
+  console.log('Database connected')
+})
+
+db.on('error', err => {
+  console.error('connection error:', err)
+})
 
 const postSchema = {
   title: String,
