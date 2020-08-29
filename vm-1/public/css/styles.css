@@ -15,6 +15,7 @@ html {
     margin-bottom: 0;
     font-size: 12px;
     letter-spacing: 5px;
+    margin-bottom: 30px;
 }
 .navbar-nav  li a:hover {
     color: #1abc9c !important;
