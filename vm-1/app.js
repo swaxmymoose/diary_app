@@ -57,6 +57,20 @@ app.get("/", function(req, res){
   });
 });
 
+app.get("/posts/:postId", function(req, res){
+
+const requestedPostId = req.params.postId;
+
+  Post.findOne({_id: requestedPostId}, function(err, post){
+    res.render("post", {
+      title: post.title,
+      content: post.content
+    });
+  });
+
+});
+
+
 app.get("/about", function(req, res){
   res.render("about");
 });
