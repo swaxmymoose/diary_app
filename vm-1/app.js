@@ -75,12 +75,24 @@ app.get("/", function(req, res){
   });
 });
 
+app.get("/delete/:postId", function(req, res){
+
+  const requestedPostId = req.params.postId;
+  Post.findByIdAndDelete(requestedPostId, function (err) {
+    if(err) console.log(err);
+    console.log("Successful deletion");
+  });
+  res.redirect("/");
+});
+
 app.get("/posts/:postId", function(req, res){
 
 const requestedPostId = req.params.postId;
 
   Post.findOne({_id: requestedPostId}, function(err, post){
+    console.log("post id: " + post._id);
     res.render("post", {
+      id: post._id,
       title: post.title,
       content: post.content
     });
