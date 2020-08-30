@@ -9,6 +9,7 @@ doc.pipe(fs.createWriteStream("/vagrant/vm-3/report.pdf"));
 
 doc.registerFont("Inconsolata", "/vagrant/vm-3/Inconsolata-Regular.ttf");
 
+// Get post data in json
 async function getPosts(callback) {
   try {
     let res = await axios.get(`http://192.168.2.11:3000/allpost`);
@@ -38,6 +39,5 @@ getPosts(function(posts) {
       .text(" ");
   });
 
-  // Finalize PDF file
   doc.end();
 });
