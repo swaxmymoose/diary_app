@@ -6,7 +6,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require('mongoose');
-
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -16,11 +15,11 @@ app.use(express.static("public"));
 
 mongoose.connect("mongodb://192.168.2.12:27017/postDB", {useNewUrlParser: true});
 
+// Check connection to mongodb server
 const db = mongoose.connection
 db.once('open', _ => {
   console.log('Database connected')
 })
-
 db.on('error', err => {
   console.error('connection error:', err)
 })
@@ -32,8 +31,10 @@ const postSchema = {
 
 const Post = mongoose.model("Post", postSchema);
 
+// Lorem ipsum text for dummy post
 const lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
 
+// Add dummy data to database
 Post.find().count(function(err, count){
   if (count === 0) {
 
@@ -50,6 +51,7 @@ Post.find().count(function(err, count){
   }
 });
 
+// Route for creating post
 app.post("/compose", function(req, res){
 
   const post = new Post({
@@ -67,6 +69,7 @@ app.post("/compose", function(req, res){
 
 });
 
+// Home page route
 app.get("/", function(req, res){
   Post.find({}, function(err, posts){
     res.render("home", {
@@ -75,6 +78,7 @@ app.get("/", function(req, res){
   });
 });
 
+// Delete post route - should refactor to put
 app.get("/delete/:postId", function(req, res){
 
   const requestedPostId = req.params.postId;
@@ -85,6 +89,7 @@ app.get("/delete/:postId", function(req, res){
   res.redirect("/");
 });
 
+// Get specific post route
 app.get("/posts/:postId", function(req, res){
 
 const requestedPostId = req.params.postId;
@@ -100,6 +105,7 @@ const requestedPostId = req.params.postId;
 
 });
 
+// Get all posts route - for pdf generator
 app.get("/allpost", function(req, res) {
  Post.find({}, function(err, posts){
   console.log(posts);
@@ -108,15 +114,15 @@ app.get("/allpost", function(req, res) {
 });
 
 
+// About page route
 app.get("/about", function(req, res){
   res.render("about");
 });
 
+// Compose post route
 app.get("/compose", function(req, res){
   res.render("compose");
 });
-
-
 
 app.listen(3000, function() {
   console.log("Server started on port 3000");
