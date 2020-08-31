@@ -29,8 +29,8 @@ Download and install Vagrant
 ### Download and Setup Time
 - ~ 1472 MB for downloads of packages/dependencies during provisioning.
 - Repo 75 KB (Zipped).
-- Running vagrant up --provision takes about 7 minutes without the xenial box file already downloaded.
-- Running vagrant up without provisioning takes 1 ½ minutes.
+- Running `vagrant up --provision` takes about 7 minutes without the xenial box file already downloaded.
+- Running `vagrant up` without provisioning takes 1 ½ minutes.
 
 ### Setup & Starting
 
