@@ -27,10 +27,10 @@ Download and install Vagrant
   - Or use Homebrew `brew cask install vagrant` in your MACOS terminal.
 
 ### Download and Setup Time
-- ~ xxxMB for downloads of packages/dependencies during provisioning.
-- ~ xxxMB download for box file.
-- ~ Repo xxxMB (Zipped).
-- `vagrant up --provision` takes xxx minuites to complete with xxx download speed.
+- ~ 1472 MB for downloads of packages/dependencies during provisioning.
+- Repo 75 KB (Zipped).
+- Running vagrant up --provision takes about 7 minutes without the xenial box file already downloaded.
+- Running vagrant up without provisioning takes 1 ½ minutes.
 
 ### Setup & Starting
 
